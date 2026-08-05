@@ -127,15 +127,17 @@
   .scorecard-grid{
     display:grid; grid-template-columns: repeat(2, 1fr);
   }
-  @media (min-width: 640px){ .scorecard-grid{ grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 640px){ .scorecard-grid{ grid-template-columns: repeat(3, 1fr); } }
   .tile{
     padding: 20px 22px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
   }
   .scorecard-grid .tile:nth-child(2n){ border-right: none; }
   @media (min-width: 640px){
     .scorecard-grid .tile:nth-child(2n){ border-right: 1px solid var(--border); }
-    .scorecard-grid .tile:nth-child(4n){ border-right: none; }
+    .scorecard-grid .tile:nth-child(3n){ border-right: none; }
   }
+  .scorecard-grid .tile:nth-last-child(-n+2){ border-bottom: none; }
+  @media (min-width: 640px){ .scorecard-grid .tile:nth-last-child(-n+3){ border-bottom: none; } }
   .tile-label{
     font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
     color: var(--text-faint); margin-bottom: 10px;
@@ -253,7 +255,7 @@
 
 <main>
   <div class="wrap hero">
-    <div class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Available for Delivery Manager / Engineering Manager / AI Delivery Lead roles</div>
+    <div class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Open to Software Engineering Manager · Engineering Manager · Senior Engineering Manager · Delivery Manager · Technology Leadership · AI Enabler roles</div>
     <h1>Software Engineering Manager, <span>building calm delivery out of regulated payments platforms.</span></h1>
     <p class="hero-sub">10+ years across QA, testing and engineering leadership in the UK energy sector. Took a greenfield PAYG payment platform from MVP through hypercare into stable BAU for ~1,400 customers and 2,000+ accounts — while holding Ofgem deadlines that don't move.</p>
     <div class="hero-ctas">
@@ -284,8 +286,18 @@
           <span class="tile-status ok"><span class="dot"></span>planning &amp; metrics</span>
         </div>
         <div class="tile">
-          <div class="tile-label">DORA telemetry</div>
-          <div class="tile-value">Framework live</div>
+          <div class="tile-label">Cycle time (DORA)</div>
+          <div class="tile-value">15d → &lt;10d</div>
+          <span class="tile-status ok"><span class="dot"></span>commit-to-production</span>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Change failure rate</div>
+          <div class="tile-value">→ zero hotfixes</div>
+          <span class="tile-status ok"><span class="dot"></span>staging + prod release checks</span>
+        </div>
+        <div class="tile">
+          <div class="tile-label">Deployment frequency &amp; MTTR</div>
+          <div class="tile-value">Instrumenting now</div>
           <span class="tile-status pending"><span class="dot"></span>CI/CD data pending</span>
         </div>
       </div>
@@ -301,7 +313,7 @@
       <div class="profile-text">
         <p>Delivery leader with <strong>10+ years</strong> in the UK energy sector, currently accountable for cross-functional teams delivering cloud-based payment and billing platforms used by domestic and business energy customers. Built a track record of taking platforms from <strong>greenfield build through live PAYG customer migration and into stable, self-sufficient BAU operation</strong>, while holding regulatory deadlines that don't move.</p>
         <p>Comfortable in technical conversations — able to challenge an architecture decision, read a service dependency map, or question a monitoring gap — without needing to write the code. That fluency is used to hold engineering teams accountable to outcomes, not to do the job for them. Equally comfortable holding a room of senior stakeholders through a delivery-risk conversation, or coaching an engineer through a difficult quarter.</p>
-        <p>Looking for the next move into <strong>Delivery Manager, Engineering Manager, or AI Delivery Lead</strong> roles — an organisation, private or public sector, that values stable, predictable delivery and a calm operator over constant technical firefighting.</p>
+        <p>Looking for the next move into <strong>Software Engineering Manager, Engineering Manager, Senior Engineering Manager, Delivery Manager, Technology Leadership, or AI Enabler</strong> roles — an organisation that values stable, predictable delivery and a calm operator over constant technical firefighting.</p>
       </div>
     </div>
   </section>
@@ -352,6 +364,25 @@
             <li>Career framework alignment and performance benchmarking</li>
             <li>Direct coaching through underperformance and improvement plans</li>
             <li>Held teams together through a full organisational restructure</li>
+            <li>Covered gaps where no Product Owner was in place, stepping into a product-facing role to keep the team supported</li>
+          </ul>
+        </div>
+        <div class="comp-card">
+          <h3>Product Partnership</h3>
+          <ul>
+            <li>Partners with Product Managers on roadmaps, product vision and values</li>
+            <li>Defines success criteria for each new feature delivery</li>
+            <li>Shapes release strategy and launch plans alongside Product</li>
+            <li>Steps into Product Owner gaps to keep prioritisation and backlog decisions moving</li>
+          </ul>
+        </div>
+        <div class="comp-card">
+          <h3>Operational Excellence</h3>
+          <ul>
+            <li>Embeds operational requirements into Definition of Done for every feature</li>
+            <li>Monitors logs and distributed traces in Datadog to track operational health</li>
+            <li>Runs structured post-release checks in both staging and production</li>
+            <li>Turns operational signals and incidents into permanent process fixes</li>
           </ul>
         </div>
       </div>
@@ -390,6 +421,14 @@
           <div class="ach-metric">SLOs defined</div>
           <div class="ach-desc">DCC credit dispatch &lt;2h, NON_COMMS alert &lt;30m, WHD idempotency 100%, PSR manual task &lt;48h, annual statement T+12M ±1 day.</div>
         </div>
+        <div class="ach-card">
+          <div class="ach-metric">15d → &lt;10d</div>
+          <div class="ach-desc">Commit-to-production cycle time, the first DORA metric to move. Deployment frequency and failed-deployment recovery time (MTTR) are now being instrumented as the next metrics in the framework.</div>
+        </div>
+        <div class="ach-card">
+          <div class="ach-metric">→ Zero hotfixes</div>
+          <div class="ach-desc">Working with both teams to drive change failure rate down, via tighter post-release checks in staging and production, alongside tracking deployment rework rate on every production release.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -413,15 +452,21 @@
             <li>Delivered a greenfield PAYG platform end-to-end — MVP, hypercare and BAU stabilisation — enabling ~1,400 customers / 2,000+ accounts to go live.</li>
             <li>Managed Ofgem regulatory changes, including seasonal tariff updates, to fixed external deadlines with no service disruption.</li>
             <li>Led a payments-domain transition: domain separation, consolidated payments codebase, payment scheduling redesign, UAT API readiness.</li>
+            <li>As manager, guides payment-related engineering teams covering both credit and prepayment customer journeys.</li>
           </ul>
           <button class="role-toggle" data-target="ex-1" aria-expanded="false">Show full detail</button>
           <div class="role-extra" id="ex-1">
             <ul>
+              <li>Partners with Product Managers on roadmaps, product vision and values, and success criteria for each new feature delivered by the team.</li>
+              <li>Shapes release strategy and launch plans jointly with Product ahead of go-live.</li>
+              <li>Covered Product Owner gaps directly, stepping into a product-facing role to keep prioritisation and backlog decisions moving when the role was unfilled.</li>
+              <li>Involved in deployment activity for Docker-based microservices across System Integration Testing (SIT) and production releases.</li>
               <li>Directed migration of observability tooling from New Relic to Datadog, improving alerting and incident response.</li>
               <li>Sponsored a SonarQube code-quality programme that reduced defect volume and improved maintainability.</li>
               <li>Facilitated domain-mapping workshops shaping the move from monolith to Domain-Driven Design.</li>
               <li>Built and scaled a hybrid team of permanent engineers and specialist contractors without losing delivery standards.</li>
               <li>Established a cross-team operating rhythm: shared ceremonies, DOD/DOR standards, refinement and three-amigos practice.</li>
+              <li>Embeds operational requirements into each feature's Definition of Done, and monitors logs and distributed traces in Datadog as part of ongoing operational tracking.</li>
               <li>Coordinated payment-operations work on unallocated cash processing, deduplication, failure handling and E2E testing.</li>
               <li>Drove card tokenisation delivery to meet compliance standards, supporting audit-ready documentation.</li>
               <li>Worked directly with British Gas as a client stakeholder on prepayment integration across Post Office and PayZone top-up networks.</li>
@@ -439,6 +484,8 @@
             <li>Raised automation maturity by ~30% through CI/CD integration and BDD practice.</li>
             <li>Reduced late-stage defects and strengthened release confidence across distributed teams.</li>
             <li>Acted as the main quality point of contact across billing workstreams with multiple client stakeholders.</li>
+            <li>Worked on a British Gas project-based team alongside a Salesforce integration covering the customer portal and broker portal.</li>
+            <li>Supported billing delivery across both B2B and B2C energy markets.</li>
           </ul>
         </div>
 
@@ -463,6 +510,7 @@
           <ul>
             <li>Led end-to-end QA across customer experience releases, including payment testing.</li>
             <li>Enhanced Selenium C# and API automation for faster, more reliable releases.</li>
+            <li>Worked within the Account Lifecycle team on the backend energy orchestration platform, covering a range of customer journeys and UI.</li>
           </ul>
         </div>
 
@@ -540,7 +588,8 @@
             <div class="tag-group-label">Quality &amp; architecture</div>
             <div class="tags">
               <span class="tag">Selenium</span><span class="tag">BDD</span><span class="tag">PostgreSQL</span>
-              <span class="tag">Redis</span><span class="tag">Microservices</span><span class="tag">Event-driven</span>
+              <span class="tag">Redis</span><span class="tag">Microservices</span><span class="tag">Docker</span>
+              <span class="tag">Event-driven</span>
             </div>
           </div>
         </div>
