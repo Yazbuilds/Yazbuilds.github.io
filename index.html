@@ -10,20 +10,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #0a1120;
-    --surface: #111b30;
-    --surface-2: #16233d;
-    --border: rgba(231,236,243,0.09);
-    --border-strong: rgba(231,236,243,0.16);
-    --text: #e9edf5;
-    --text-muted: #8b96ac;
-    --text-faint: #5c6780;
-    --signal-green: #33d6a0;
-    --signal-green-dim: rgba(51,214,160,0.14);
-    --signal-amber: #f5a623;
-    --signal-amber-dim: rgba(245,166,35,0.14);
-    --accent: #5b8dff;
-    --accent-dim: rgba(91,141,255,0.14);
+    --bg: #0a0d10;
+    --surface: #12171b;
+    --surface-2: #181e23;
+    --border: rgba(0,212,255,0.10);
+    --border-strong: rgba(0,212,255,0.22);
+    --text: #e8edf0;
+    --text-muted: #8b96a0;
+    --text-faint: #57616b;
+    --signal-green: #22d3ee;
+    --signal-green-dim: rgba(34,211,238,0.14);
+    --signal-amber: #ffb020;
+    --signal-amber-dim: rgba(255,176,32,0.16);
+    --accent: #22d3ee;
+    --accent-dim: rgba(34,211,238,0.14);
     --display: 'Space Grotesk', sans-serif;
     --body: 'IBM Plex Sans', sans-serif;
     --mono: 'IBM Plex Mono', monospace;
@@ -41,8 +41,8 @@
     margin:0;
     background: var(--bg);
     background-image:
-      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(91,141,255,0.10), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 100% 0%, rgba(51,214,160,0.06), transparent 55%);
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(0,212,255,0.09), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 0%, rgba(255,176,32,0.05), transparent 55%);
     color: var(--text);
     font-family: var(--body);
     line-height: 1.55;
@@ -71,7 +71,7 @@
   }
   .nav-name{ font-family: var(--display); font-weight:600; font-size: 1rem; letter-spacing: 0.01em; }
   .nav-links{ display:flex; gap: 22px; list-style:none; margin:0; padding:0; font-size: 0.86rem; color: var(--text-muted); }
-  .nav-links a{ text-decoration:none; transition: color 0.15s; }
+  .nav-links a{ text-decoration:none; transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
   .nav-links a:hover{ color: var(--text); }
   .nav-links{ display:none; }
   @media (min-width: 720px){ .nav-links{ display:flex; } }
@@ -84,39 +84,64 @@
   }
   .status-dot{
     width:7px; height:7px; border-radius:50%; background: var(--signal-green);
-    box-shadow: 0 0 0 0 rgba(51,214,160,0.6);
+    box-shadow: 0 0 0 0 rgba(0,212,255,0.6);
     animation: pulse 2.4s infinite;
   }
   @keyframes pulse{
-    0%{ box-shadow: 0 0 0 0 rgba(51,214,160,0.5); }
-    70%{ box-shadow: 0 0 0 7px rgba(51,214,160,0); }
-    100%{ box-shadow: 0 0 0 0 rgba(51,214,160,0); }
+    0%{ box-shadow: 0 0 0 0 rgba(0,212,255,0.5); }
+    70%{ box-shadow: 0 0 0 7px rgba(0,212,255,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(0,212,255,0); }
   }
   h1{
     font-family: var(--display); font-weight: 700;
-    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
-    line-height: 1.08; margin: 0 0 20px; letter-spacing: -0.01em;
-    max-width: 15ch;
+    font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+    line-height: 1.16; margin: 0 0 20px; letter-spacing: -0.01em;
+    max-width: 26ch;
   }
   h1 span{ color: var(--text-muted); }
-  .hero-sub{ font-size: 1.08rem; color: var(--text-muted); max-width: 56ch; margin: 0 0 30px; }
+  .hero-sub{
+    font-family: var(--mono); font-size: 0.8rem; line-height: 1.85; letter-spacing: 0.02em;
+    color: var(--text-muted); max-width: 56ch; margin: 0 0 30px;
+    padding-left: 14px; border-left: 2px solid var(--border-strong);
+  }
+  .hero-sub::after{
+    content: '▌'; color: var(--signal-green); margin-left: 2px;
+    animation: caret-blink 1.1s steps(1) infinite;
+  }
+  @keyframes caret-blink{ 50%{ opacity: 0; } }
   .hero-ctas{ display:flex; flex-wrap: wrap; gap: 12px; margin-bottom: 56px; }
   .btn{
     font-family: var(--body); font-weight:500; font-size: 0.92rem;
-    padding: 11px 20px; border-radius: 8px; text-decoration:none;
-    display:inline-flex; align-items:center; gap:8px; transition: all 0.15s;
+    padding: 11px 22px; border-radius: 10px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .btn-primary{ background: var(--accent); color: #071022; }
-  .btn-primary:hover{ background: #78a3ff; }
+  .btn-primary{ background: var(--accent); color: #06171c; }
+  .btn-primary:hover{ background: #7de6ff; transform: translateY(-1px); box-shadow: 0 10px 26px -12px rgba(0,212,255,0.45); }
   .btn-ghost{ border: 1px solid var(--border-strong); color: var(--text); }
-  .btn-ghost:hover{ border-color: var(--accent); background: var(--accent-dim); }
+  .btn-ghost:hover{ border-color: var(--accent); background: var(--accent-dim); transform: translateY(-1px); }
 
   /* ---------- SCORECARD (signature element) ---------- */
   .scorecard{
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 18px;
     overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.5);
+  }
+  .scan-beam{
+    position: absolute; left: 0; right: 0; height: 2px; top: -6%;
+    background: linear-gradient(90deg, transparent, var(--signal-green) 45%, var(--signal-green) 55%, transparent);
+    box-shadow: 0 0 18px 3px rgba(0,212,255,0.55);
+    animation: scan-sweep 4.2s cubic-bezier(0.4,0,0.2,1) infinite;
+    pointer-events: none; opacity: 0;
+  }
+  @keyframes scan-sweep{
+    0%{ top: -4%; opacity: 0; }
+    6%{ opacity: 0.9; }
+    50%{ opacity: 0.9; }
+    94%{ opacity: 0; }
+    100%{ top: 104%; opacity: 0; }
   }
   .scorecard-head{
     display:flex; align-items:center; justify-content:space-between;
@@ -150,12 +175,18 @@
 
   /* ---------- SECTIONS ---------- */
   section{ padding: 68px 0; border-top: 1px solid var(--border); }
+  section.reveal{ opacity: 0; transform: translateY(18px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+  section.reveal.in-view{ opacity: 1; transform: translateY(0); }
   .section-head{ margin-bottom: 38px; }
   .section-kicker{
     font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--accent); margin-bottom: 12px;
   }
-  h2{ font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 8px; font-weight: 600; }
+  h2{ font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 8px; font-weight: 600; position: relative; padding-bottom: 14px; }
+  h2::after{
+    content:''; position:absolute; left:0; bottom:0; width: 46px; height: 3px; border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--signal-amber));
+  }
   .section-desc{ color: var(--text-muted); max-width: 62ch; }
 
   /* Profile */
@@ -165,7 +196,14 @@
   /* Competencies */
   .comp-grid{ display:grid; grid-template-columns: 1fr; gap: 18px; }
   @media (min-width: 720px){ .comp-grid{ grid-template-columns: 1fr 1fr; } }
-  .comp-card{ background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 26px; }
+  .comp-card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0));
+    background-color: var(--surface);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--border); border-radius: 16px; padding: 24px 26px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  .comp-card:hover{ transform: translateY(-3px); border-color: var(--border-strong); box-shadow: 0 18px 40px -22px rgba(0,0,0,0.55); }
   .comp-card h3{ font-family: var(--display); font-size: 1.05rem; margin: 0 0 14px; font-weight: 600; color: var(--accent); }
   .comp-card ul{ margin:0; padding-left: 18px; color: var(--text-muted); font-size: 0.93rem; }
   .comp-card li{ margin-bottom: 8px; }
@@ -176,9 +214,14 @@
   @media (min-width: 640px){ .ach-grid{ grid-template-columns: 1fr 1fr; } }
   @media (min-width: 980px){ .ach-grid{ grid-template-columns: 1fr 1fr 1fr; } }
   .ach-card{
-    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0));
+    background-color: var(--surface);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--border); border-radius: 16px;
     padding: 22px; display:flex; flex-direction:column; gap: 10px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
   }
+  .ach-card:hover{ transform: translateY(-3px); border-color: var(--border-strong); box-shadow: 0 18px 40px -22px rgba(0,0,0,0.55); }
   .ach-metric{ font-family: var(--display); font-size: 1.7rem; font-weight: 700; color: var(--signal-green); }
   .ach-desc{ color: var(--text-muted); font-size: 0.9rem; }
 
@@ -201,13 +244,11 @@
   .role ul{ margin: 0; padding-left: 18px; color: var(--text-muted); font-size: 0.93rem; }
   .role li{ margin-bottom: 7px; }
   .role li::marker{ color: var(--text-faint); }
-  .role-toggle{
-    background:none; border:none; color: var(--text-faint); font-family: var(--mono); font-size: 0.75rem;
-    cursor:pointer; padding: 8px 0 0; text-decoration: underline; text-underline-offset: 3px;
+  .role-block{ margin-top: 22px; }
+  .role-sub{
+    font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--accent); margin-bottom: 10px;
   }
-  .role-toggle:hover{ color: var(--accent); }
-  .role-extra{ display:none; }
-  .role-extra.open{ display:block; }
 
   /* Education / certs */
   .split{ display:grid; grid-template-columns: 1fr; gap: 32px; }
@@ -219,6 +260,20 @@
   }
   .split li:last-child{ border-bottom: none; }
   .split li strong{ color: var(--text); font-weight: 500; display:block; margin-bottom: 2px; }
+
+  /* Personal projects */
+  .project-card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0));
+    background-color: var(--surface);
+    border: 1px solid var(--border); border-radius: 16px;
+    padding: 28px 30px;
+  }
+  .project-tag{
+    font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--signal-amber); margin-bottom: 12px;
+  }
+  .project-card h3{ font-family: var(--display); font-size: 1.15rem; font-weight: 600; margin: 0 0 12px; color: var(--accent); }
+  .project-card p{ color: var(--text-muted); font-size: 0.95rem; margin: 0; max-width: 68ch; }
 
   /* Toolkit tags */
   .tag-group{ margin-bottom: 22px; }
@@ -235,9 +290,25 @@
   .footer-cta h2{ margin-bottom: 10px; }
   .footer-links{ display:flex; gap: 14px; flex-wrap: wrap; }
   .footer-note{ color: var(--text-faint); font-size: 0.82rem; margin-top: 40px; font-family: var(--mono); }
+  .page-scan{
+    position: fixed; left: 0; right: 0; top: -2%; height: 1px; z-index: 40;
+    background: linear-gradient(90deg, transparent, rgba(0,212,255,0.9) 50%, transparent);
+    box-shadow: 0 0 22px 4px rgba(0,212,255,0.35);
+    pointer-events: none; opacity: 0;
+    animation: page-scan-sweep 9s linear infinite;
+    mix-blend-mode: screen;
+  }
+  @keyframes page-scan-sweep{
+    0%{ top: -2%; opacity: 0; }
+    4%{ opacity: 0.4; }
+    50%{ opacity: 0.4; }
+    96%{ opacity: 0; }
+    100%{ top: 100%; opacity: 0; }
+  }
 </style>
 </head>
 <body>
+<div class="page-scan" aria-hidden="true"></div>
 
 <header class="site-nav">
   <div class="nav-inner">
@@ -248,6 +319,7 @@
       <li><a href="#achievements">Achievements</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -255,9 +327,9 @@
 
 <main>
   <div class="wrap hero">
-    <div class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Open to Delivery Manager . Software Engineering Manager · Senior Engineering Manager . Technology Leadership · AI Enabler roles</div>
-    <h1>Software Engineering Manager, <span>building and leading high-performing engineering teams that deliver reliable software while creating an environment where people can grow and do their best work.</span></h1>
-    <p class="hero-sub">10+ years across QA, testing and engineering leadership in the UK energy sector. Took a greenfield PAYG payment platform from MVP through hypercare into stable BAU for ~1,400 customers and 2,000+ accounts — while holding Ofgem deadlines that don't move.</p>
+    <div class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Open to Software Engineering Manager  · Senior Engineering Manager · Delivery Manager · Product Manager · AI Enabler roles</div>
+    <h1>I build and lead high-performing engineering teams that deliver reliable software — <span>while creating an environment where people can grow and do their best work.</span></h1>
+    <p class="hero-sub">10+ years across QA, testing and engineering leadership in the UK energy sector. Took a greenfield PAYG payment platform from MVP through hypercare into stable BAU for ~1,400 customers and 2,000+ accounts, holding Ofgem deadlines that don't move.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="#experience">View experience</a>
       <a class="btn btn-ghost" href="https://www.linkedin.com/in/yazhini-ponnurangam-36047556" target="_blank" rel="noopener">Connect on LinkedIn</a>
@@ -265,6 +337,7 @@
     </div>
 
     <div class="scorecard">
+      <div class="scan-beam" aria-hidden="true"></div>
       <div class="scorecard-head">
         <span>PAYG · delivery scorecard</span>
         <span class="live"><span class="status-dot" aria-hidden="true"></span>ENSEK · Aug 2024–Present</span>
@@ -304,7 +377,7 @@
     </div>
   </div>
 
-  <section id="profile">
+  <section id="profile" class="reveal">
     <div class="wrap">
       <div class="section-head">
         <div class="section-kicker">01 — Profile</div>
@@ -318,7 +391,7 @@
     </div>
   </section>
 
-  <section id="competencies">
+  <section id="competencies" class="reveal">
     <div class="wrap">
       <div class="section-head">
         <div class="section-kicker">02 — Core competencies</div>
@@ -389,7 +462,7 @@
     </div>
   </section>
 
-  <section id="achievements">
+  <section id="achievements" class="reveal">
     <div class="wrap">
       <div class="section-head">
         <div class="section-kicker">03 — Achievements &amp; metrics</div>
@@ -400,10 +473,6 @@
         <div class="ach-card">
           <div class="ach-metric">1,400+ / 2,000+</div>
           <div class="ach-desc">PAYG customers and accounts enabled to go live on the Ignition platform, from MVP through migration.</div>
-        </div>
-        <div class="ach-card">
-          <div class="ach-metric">8/8 · 1/1 · 8/8</div>
-          <div class="ach-desc">Sprint 16 (Gaia squad): story points closed, stories closed, and all unplanned priority bugs closed in a single sprint during hypercare — against a 6-sprint average of 29 SP / 7 items.</div>
         </div>
         <div class="ach-card">
           <div class="ach-metric">95% → 99%+</div>
@@ -433,7 +502,7 @@
     </div>
   </section>
 
-  <section id="experience">
+  <section id="experience" class="reveal">
     <div class="wrap">
       <div class="section-head">
         <div class="section-kicker">04 — Professional experience</div>
@@ -454,22 +523,81 @@
             <li>Led a payments-domain transition: domain separation, consolidated payments codebase, payment scheduling redesign, UAT API readiness.</li>
             <li>As manager, guides payment-related engineering teams covering both credit and prepayment customer journeys.</li>
           </ul>
-          <button class="role-toggle" data-target="ex-1" aria-expanded="false">Show full detail</button>
-          <div class="role-extra" id="ex-1">
+
+          <div class="role-block">
+            <div class="role-sub">Delivery Leadership</div>
+            <ul>
+              <li>Leads two cross-functional engineering teams (8–12 engineers) delivering secure, cloud-based PAYG payment platforms and customer migration programmes.</li>
+              <li>Delivered a greenfield PAYG platform end-to-end, enabling roughly 1,400 PAYG customers (2,000+ accounts) to go live, from MVP through to live customer migration onto the new platform.</li>
+              <li>Directed the PAYG customer migration programme through MVP delivery, hypercare and production stabilisation into BAU operations, stabilising the post-launch delivery backlog in the weeks following go-live.</li>
+              <li>Delivered engineering outcomes across both B2C and B2B energy markets, covering customer onboarding, billing, payments and regulatory compliance.</li>
+              <li>Drove delivery of card tokenisation functionality to meet compliance standards, supporting the team in documenting controls and evidence ready for audit.</li>
+              <li>Planned and executed the BAU transition strategy, coordinating outstanding feature closure, service-transition readiness and cross-team handoff governance alongside operational processes, ownership models and support runbooks.</li>
+              <li>Coordinated migration of PAYG customers from legacy platforms to the new cloud-based platform across traditional and smart-meter services, managing dependencies across multiple teams and business stakeholders.</li>
+              <li>Improved delivery predictability by 25–30% through better planning, delivery metrics and continuous improvement practice.</li>
+            </ul>
+          </div>
+
+          <div class="role-block">
+            <div class="role-sub">Product Partnership</div>
             <ul>
               <li>Partners with Product Managers on roadmaps, product vision and values, and success criteria for each new feature delivered by the team.</li>
               <li>Shapes release strategy and launch plans jointly with Product ahead of go-live.</li>
-              <li>Covered Product Owner gaps directly, stepping into a product-facing role to keep prioritisation and backlog decisions moving when the role was unfilled.</li>
+              <li>Covered Product Owner gaps directly, stepping into a product-facing role to keep prioritisation, backlog and stakeholder communication moving when the role was unfilled.</li>
+            </ul>
+          </div>
+
+          <div class="role-block">
+            <div class="role-sub">People Leadership &amp; Organisational Change</div>
+            <ul>
+              <li>Built and scaled a hybrid engineering organisation of permanent engineers and specialist contractors, growing delivery capacity while holding engineering standards and team cohesion.</li>
+              <li>Directly managed internal engineering team members based overseas, coordinating across time zones and building consistent ways of working.</li>
+              <li>Led two teams through a significant organisational transformation, defining new ways of working while keeping delivery moving through the transition to a new operating model.</li>
+              <li>Built a psychologically safe, inclusive engineering culture through coaching, mentoring, career development and clear performance expectations tied to company OKRs.</li>
+              <li>Contributed to engineering performance benchmarking and career-band alignment, improving consistency and progression across engineering teams.</li>
+            </ul>
+          </div>
+
+          <div class="role-block">
+            <div class="role-sub">Technical Strategy &amp; Architecture Influence</div>
+            <ul>
+              <li>Facilitated cross-functional domain-mapping workshops to identify business capabilities and bounded contexts, shaping the shift from a monolithic architecture to Domain-Driven Design.</li>
+              <li>Contributed to architectural discussion and decision-making on platform decomposition, domain ownership and service boundaries, partnering with Architects rather than owning the design.</li>
               <li>Involved in deployment activity for Docker-based microservices across System Integration Testing (SIT) and production releases.</li>
-              <li>Directed migration of observability tooling from New Relic to Datadog, improving alerting and incident response.</li>
-              <li>Sponsored a SonarQube code-quality programme that reduced defect volume and improved maintainability.</li>
-              <li>Facilitated domain-mapping workshops shaping the move from monolith to Domain-Driven Design.</li>
-              <li>Built and scaled a hybrid team of permanent engineers and specialist contractors without losing delivery standards.</li>
-              <li>Established a cross-team operating rhythm: shared ceremonies, DOD/DOR standards, refinement and three-amigos practice.</li>
+              <li>Directed the migration of observability tooling from New Relic to Datadog, improving production monitoring, alerting and operational visibility.</li>
+              <li>Sponsored a SonarQube code-quality programme that meaningfully reduced code quality issues and improved maintainability across multiple services.</li>
+              <li>Set the direction for performance-optimisation work that improved application responsiveness by approximately 20%, alongside stronger error handling and platform resilience.</li>
+              <li>Partnered with Product Managers and Technical Leads to prioritise and deliver technical debt reduction initiatives, balancing customer value with long-term platform sustainability.</li>
+              <li>Led a payments-domain transition for the core payments platform, aligning domain separation, a consolidated payments codebase, payment scheduling redesign, UAT API readiness and client documentation for auto top-up and card-storage journeys.</li>
+            </ul>
+          </div>
+
+          <div class="role-block">
+            <div class="role-sub">Reliability &amp; Operational Excellence</div>
+            <ul>
+              <li>Raised payment top-up platform availability from 95% to over 99% through proactive operational improvement and engineering discipline.</li>
+              <li>Set Datadog alerting thresholds to monitor error rates above 5% and manage incidents proactively.</li>
+              <li>Used infrastructure monitoring to track top-up request speed, latency and CPU usage, and APM tooling for metrics, logs and traces to speed up debugging.</li>
               <li>Embeds operational requirements into each feature's Definition of Done, and monitors logs and distributed traces in Datadog as part of ongoing operational tracking.</li>
-              <li>Coordinated payment-operations work on unallocated cash processing, deduplication, failure handling and E2E testing.</li>
-              <li>Drove card tokenisation delivery to meet compliance standards, supporting audit-ready documentation.</li>
-              <li>Worked directly with British Gas as a client stakeholder on prepayment integration across Post Office and PayZone top-up networks.</li>
+              <li>Reduced commit-to-production cycle time from 15 days to under 10 days; now instrumenting deployment frequency and failed-deployment recovery time (MTTR) as the next DORA metrics to track.</li>
+              <li>Driving change failure rate toward zero hotfixes across both teams, through tightened post-release checks in staging and production and closer monitoring of deployment rework rate during production releases.</li>
+              <li>Framed and operationalised reliability metrics across customer-critical journeys: credit-dispatch turnaround within 2 hours, non-communicating-meter alerts within 30 minutes, 100% idempotency on Warm Home Discount processing, Priority Services Register manual tasks within 48 hours, and annual statement issuance within ±1 day of the 12-month mark.</li>
+              <li>Supported teams to run structured post-release checks and health monitoring after each deployment, confirming platform stability before handover to BAU.</li>
+              <li>Strengthened logging, metrics and distributed tracing to enable faster root-cause analysis and continuous operational improvement.</li>
+              <li>Led the operational handover that enabled autonomous squad ownership and sustainable BAU operation.</li>
+              <li>Coordinated payment-operations work on unallocated cash processing, deduplication, failure handling, workspace-tooling readiness and end-to-end testing.</li>
+            </ul>
+          </div>
+
+          <div class="role-block">
+            <div class="role-sub">Stakeholder Management &amp; Continuous Improvement</div>
+            <ul>
+              <li>Worked closely with Product Managers, Architects and senior stakeholders to align delivery plans with business priorities, communicating progress, risk, dependencies and mitigation plans to technical and non-technical audiences alike.</li>
+              <li>Facilitated planning sessions, sprint reviews, retrospectives and roadmap discussions across two teams.</li>
+              <li>Established a cross-team operating rhythm across Payments and PAYG workstreams: shared ceremonies, DOD/DOR standards, refinement and three-amigos practices, and governance across payment arrangements, adequacy and PAYG delivery.</li>
+              <li>Introduced DORA metrics to improve delivery flow and team performance, and used structured retrospectives and root-cause analysis to strengthen incident management.</li>
+              <li>Delivered scalable payment integration capability supporting Worldpay, Smarter Pay and GoCardless, strengthening secure SDLC practice to align with financial-services compliance frameworks.</li>
+              <li>Worked directly with British Gas as a client stakeholder on prepayment integration between the Post Office and PayZone top-up networks.</li>
             </ul>
           </div>
         </div>
@@ -540,7 +668,7 @@
     </div>
   </section>
 
-  <section id="education">
+  <section id="education" class="reveal">
     <div class="wrap">
       <div class="section-head">
         <div class="section-kicker">05 — Education, certifications &amp; toolkit</div>
@@ -597,6 +725,20 @@
     </div>
   </section>
 
+  <section id="projects" class="reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">06 — Personal projects &amp; interests</div>
+        <h2>Building in the open, off the clock</h2>
+      </div>
+      <div class="project-card">
+        <div class="project-tag">Side project · in progress</div>
+        <h3>AI-assisted coaching &amp; feedback tool for engineering managers</h3>
+        <p>Scoping a tool that encodes practical management frameworks to support better, more structured decisions — feedback conversations, coaching moments, performance discussions — the everyday judgment calls a manager makes. A personal side project reflecting a genuine interest in applied AI and data-informed decision-making, not just for engineering delivery but for how people are led.</p>
+      </div>
+    </div>
+  </section>
+
   <footer id="contact">
     <div class="wrap">
       <div class="footer-inner">
@@ -615,14 +757,20 @@
 </main>
 
 <script>
-  document.querySelectorAll('.role-toggle').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var target = document.getElementById(btn.getAttribute('data-target'));
-      var isOpen = target.classList.toggle('open');
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      btn.textContent = isOpen ? 'Show less' : 'Show full detail';
-    });
-  });
+  var revealTargets = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && revealTargets.length){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    revealTargets.forEach(function(el){ io.observe(el); });
+  } else {
+    revealTargets.forEach(function(el){ el.classList.add('in-view'); });
+  }
 </script>
 
 </body>
